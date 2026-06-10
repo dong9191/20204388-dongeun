@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator FadeAndShowText()
     {
-        float duration = 1.5f; // 1.5초 동안 화면이 어두워집니다.
+        float duration = 1.5f; 
         float timer = 0f;
         Color color = fadeImage.color;
 
@@ -27,10 +27,10 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        // 화면이 다 어두워지면 글자를 스르륵 띄웁니다!
+
         winText.SetActive(true);
 
-        // 연출이 완전히 끝난 후 게임을 멈춥니다.
+       
         Time.timeScale = 0f;
     }
 }

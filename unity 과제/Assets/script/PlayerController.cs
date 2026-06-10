@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
         if (moveDir != Vector3.zero) transform.forward = moveDir;
 
-        // 스페이스바 점프
+   
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -35,13 +35,12 @@ public class PlayerController : MonoBehaviour
   
     private void OnCollisionEnter(Collision collision)
     {
-        // 1. 오브젝트 이름으로 바닥 체크
         if (collision.gameObject.name.ToLower().Contains("ground"))
         {
             isGrounded = true;
         }
 
-        // 2. 오브젝트 이름으로 돌 충돌 체크
+       
         if (collision.gameObject.name.ToLower().Contains("stone"))
         {
             ResetToStart();
@@ -50,7 +49,7 @@ public class PlayerController : MonoBehaviour
      
         if (collision.gameObject.GetComponent<Obstacle>() != null)
         {
-            Debug.Log("💥 방해물에 부딪혔습니다! 처음으로 돌아갑니다.");
+           
             ResetToStart();
         }
     } 
@@ -59,18 +58,17 @@ public class PlayerController : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        // 🏁 골인 지점(Finish 태그) 감지
+        
         if (other.CompareTag("Finish"))
         {
-            Debug.Log("🎉 축하합니다! 🎉");
-            
-            // 화면 전환 및 엔딩 연출 실행
+        
+              
             FindFirstObjectByType<GameManager>().GameClear();
         }
     }
     private void ResetToStart()
     {
-        Debug.Log("돌 충돌 감지! 리스폰합니다.");
+       
         transform.position = startPosition;
         if (rb != null)
         {
